@@ -8,9 +8,15 @@ E-mail: tjyangshan@gmail.com, prinway1226@gmail.com
 
 ## Introduction
 
-This repository mainly contains our notes on the usage of SimPy. It also contains teaching examples using Excel from Prof. Qiu Canhua and Prof. Hu Zhaolin. 
+This repository mainly contains our notes about some examples of SimPy. It also contains teaching examples using Excel from Prof. Qiu Canhua and Prof. Hu Zhaolin. 
 
-## Examples
+We also build a demo for airplane boarding based on SimPy. https://github.com/seanys/Boarding-Simulation
+
+## Examples-SimPy
+
+### Movie Renege
+
+Source Code: 
 
 ### Queue Model - Bank Renege
 
@@ -18,7 +24,11 @@ This repository mainly contains our notes on the usage of SimPy. It also contain
 
 
 
+## Example-Excel
 
+https://github.com/seanys/Operations-Management#simulation
+
+https://github.com/seanys/Simulation-Notes/tree/master/excel-examples
 
 
 

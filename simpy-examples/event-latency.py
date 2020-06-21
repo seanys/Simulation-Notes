@@ -1,30 +1,11 @@
 """
-Event Latency example
-
-Covers:
-
-- Resources: Store
-
-Scenario:
-  This example shows how to separate the time delay of events between
-  processes from the processes themselves.
-
-When Useful:
-  When modeling physical things such as cables, RF propagation, etc.  it
-  better encapsulation to keep this propagation mechanism outside of the
-  sending and receiving processes.
-
-  Can also be used to interconnect processes sending messages
-
-Example by:
-  Keith Smith
-
+场景：拆分各个进程中各个事件的时间延时
+用途：进程通信
+原作者: Keith Smith
 """
 import simpy
 
-
 SIM_DURATION = 100
-
 
 class Cable(object):
     """This class represents the propagation through a cable."""
