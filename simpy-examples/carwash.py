@@ -6,7 +6,7 @@ import random
 import simpy
 
 
-RANDOM_SEED = 42
+RANDOM_SEED = 42 
 NUM_MACHINES = 2  # 可以用的洗车机
 WASHTIME = 5      # 需要花费的洗车事件（分钟）
 T_INTER = 7       # 每隔七分钟生成一辆车
@@ -53,7 +53,6 @@ def setup(env, num_machines, washtime, t_inter):
         yield env.timeout(random.randint(t_inter - 2, t_inter + 2))
         i += 1
         env.process(car(env, 'Car %d' % i, carwash))
-
 
 print('Carwash')
 random.seed(RANDOM_SEED) 

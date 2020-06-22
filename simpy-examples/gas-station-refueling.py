@@ -46,14 +46,12 @@ def car(name, env, gas_station, fuel_pump):
     print('%s arriving at gas station at %.1f' % (name, env.now))
     with gas_station.request() as req:
         start = env.now
-        # Request one of the gas pumps
         yield req
 
-        # Get the required amount of fuel
         liters_required = FUEL_TANK_SIZE - fuel_tank_level
+        
         yield fuel_pump.get(liters_required)
 
-        # The "actual" refueling process takes some time
         yield env.timeout(liters_required / REFUELING_SPEED)
 
         print('%s finished refueling in %.1f seconds.' % (name,
@@ -61,7 +59,8 @@ def car(name, env, gas_station, fuel_pump):
 
 
 def gas_station_control(env, fuel_pump):
-    """Periodically check the level of the *fuel_pump* and call the tank
+    """周期检查是否超出
+    Periodically check the level of the *fuel_pump* and call the tank
     truck if the level falls below a threshold."""
     while True:
         if fuel_pump.level / fuel_pump.capacity * 100 < THRESHOLD:

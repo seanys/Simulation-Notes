@@ -61,7 +61,6 @@ print('Movie renege')
 random.seed(RANDOM_SEED)
 env = simpy.Environment()
 
-
 counter = simpy.Resource(env, capacity=1) # 安排服务柜台
 movies = ['Python Unchained', 'Kill Process', 'Pulp Implementation'] # 全部低昂嘤
 available = {movie: TICKETS for movie in movies} # 每个电影的票的数目

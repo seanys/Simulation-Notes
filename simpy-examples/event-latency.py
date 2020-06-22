@@ -8,7 +8,7 @@ import simpy
 SIM_DURATION = 100
 
 class Cable(object):
-    """This class represents the propagation through a cable."""
+    """信息通道"""
     def __init__(self, env, delay):
         self.env = env
         self.delay = delay
@@ -26,25 +26,24 @@ class Cable(object):
 
 
 def sender(env, cable):
-    """A process which randomly generates messages."""
+    """随机生成和发出信息"""
     while True:
-        # wait for next transmission
+        # 等待一定事件重复该过程
         yield env.timeout(5)
         cable.put('Sender sent this at %d' % env.now)
 
 
 def receiver(env, cable):
-    """A process which consumes messages."""
+    """接收生成了的信息"""
     while True:
-        # Get event for message pipe
+        # 获得上述的通知信息
         msg = yield cable.get()
         print('Received this at %d while %s' % (env.now, msg))
 
-
-# Setup and start the simulation
 print('Event Latency')
 env = simpy.Environment()
 
+# 开始仿真过程，发出消息和接收消息
 cable = Cable(env, 10)
 env.process(sender(env, cable))
 env.process(receiver(env, cable))

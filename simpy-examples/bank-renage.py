@@ -5,10 +5,10 @@ import random
 import simpy
 
 RANDOM_SEED = 42
-NEW_CUSTOMERS = 5  # Total number of customers
-INTERVAL_CUSTOMERS = 10.0  # Generate new customers roughly every x seconds
-MIN_PATIENCE = 1  # Min. customer patience
-MAX_PATIENCE = 3  # Max. customer patience
+NEW_CUSTOMERS = 5  # 客户总人数
+INTERVAL_CUSTOMERS = 10.0  # 客户的间隔时间/秒
+MIN_PATIENCE = 1  # 客户的最小的忍受时间
+MAX_PATIENCE = 3  # 客户的最大的忍受时间
 
 
 def source(env, number, interval, counter):
@@ -27,7 +27,7 @@ def customer(env, name, counter, time_in_bank):
     with counter.request() as req:
         patience = random.uniform(MIN_PATIENCE, MAX_PATIENCE) # 生成随机的等待事件
 
-        results = yield req | env.timeout(patience) # 
+        results = yield req | env.timeout(patience) # 等待事件发生
 
         wait = env.now - arrive # 当前事件减去等待事件
 
@@ -39,7 +39,7 @@ def customer(env, name, counter, time_in_bank):
             print('%7.4f %s: Finished' % (env.now, name))
 
         else:
-            # We reneged
+            # 等待的事件超过了忍耐事件-退出
             print('%7.4f %s: RENEGED after %6.3f' % (env.now, name, wait))
 
 
