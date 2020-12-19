@@ -15,8 +15,8 @@ SIM_TIME = 120  # 仿真时间
 
 def moviegoer(env, movie, num_tickets, theater):
     """
-    顾客尝试购买一定数目的某场电影的票（1）如果没票了则离开（2）如果轮到了购买但是
-    没有足够的票了也离开。如果只有最后一张票，出发事件所有顾客离开
+    顾客尝试购买一定数目的某场电影的票（1）如果没票了则离开（2）如果轮到了购买但是没有足够的票了也离开。
+    如果只有最后一张票，出发事件所有顾客离开
     """
     with theater.counter.request() as my_turn:
         # 等待到该客户或者票卖完了（状态）
@@ -52,9 +52,9 @@ def customer_arrivals(env, theater):
         if theater.available[movie]:
             env.process(moviegoer(env, movie, num_tickets, theater))
 
+
 # 剧场的基本定义
 Theater = collections.namedtuple('Theater', 'counter, movies, available, sold_out, when_sold_out, num_renegers')
-
 
 # 随机种子和环境设置
 print('Movie renege')
